@@ -1,0 +1,17 @@
+fastcache==1.1.0
+flask_cors
+filelock 
+flake8 
+Flask 
+json5==0.9.5
+jsonschema 
+matplotlib 
+netaddr==0.8.0
+numpy 
+numpydoc
+pandas==1.2.4
+resolvelib==0.5.4
+scikit-image==0.18.1
+scikit-learn 
+scipy 
+seaborn 

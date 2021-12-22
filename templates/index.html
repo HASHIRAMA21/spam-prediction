@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body bgcolor="green" data-spy="scroll">
+
+    <p class="text-center text-uppercase text-decoration-underline fw-bold"> SPAMS OU HAMS</p>
+    <div style="display: flex; justify-content:center">
+        <div class="form-group col-md-6">
+            <label>Entrez votre mail</label>
+            <textarea type="description" value="" id="mail" class="form-control"></textarea><br/>
+            <button id="buttonSubmit" class="btn btn-success">Envoyer le mail</button>
+        </div>
+    </div><br/>
+    <div id="h4" class="text-center text-uppercase fw-bold"></div>
+    <script type="text/javascript">
+        (function() {
+            var httpRequest = document.getElementById("buttonSubmit").addEventListener('click', makeRequest);
+
+            function makeRequest() {
+                var mail = document.getElementById('mail').value;
+                httpRequest = new XMLHttpRequest();
+                if (!httpRequest) {
+                    return false;
+                }
+                httpRequest.onreadystatechange = alertContents;
+                httpRequest.open('GET', "http://localhost:5000/api/spamdetector?mail='" + mail + "'");
+                httpRequest.send();
+            }
+
+            function alertContents() {
+                if (httpRequest.readyState == XMLHttpRequest.DONE) {
+                    if (httpRequest.status == 200) {
+                        var response = httpRequest.responseText;
+                        document.getElementById('h4').textContent = "reponse :  " + response
+                    }
+                    if (httpRequest.status == 404) {
+                        console.log("page not found")
+                    }
+                }
+                console.log(response)
+            }
+        })();
+    </script>
+</body>
+
+</html>
